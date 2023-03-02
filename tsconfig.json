@@ -13,11 +13,9 @@
       "ESNext",
       "DOM"
     ],
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*":["./src/*"]
     },
     "skipLibCheck": true,
     "noEmit": true
