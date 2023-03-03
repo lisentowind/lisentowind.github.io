@@ -1,3 +1,5 @@
+
 module.exports = {
-    extends: ['@commitlint/config-conventional'],
+  // 继承的规则
+  extends: ["@commitlint/config-conventional"],
 };
