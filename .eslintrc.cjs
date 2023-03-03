@@ -1,3 +1,6 @@
+
+const path = require('path')
+
 module.exports = {
     "env": {
         "browser": true,
@@ -14,12 +17,22 @@ module.exports = {
     "parserOptions": {
         "ecmaVersion": "latest",
         "parser": "@typescript-eslint/parser",
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaFeatures": {
+            jsx: true
+        }
     },
     "plugins": [
         "vue",
         "@typescript-eslint"
     ],
+    "settings": {
+        'import/resolver': {
+            typescript: {
+                project: path.resolve(__dirname, './tsconfig.json')
+            }
+        }
+    },
     "rules": {
     }
 }
