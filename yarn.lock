@@ -2754,7 +2754,7 @@ vite@^4.1.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vue-demi@*:
+vue-demi@*, vue-demi@latest:
   version "0.13.11"
   resolved "https://registry.npmmirror.com/vue-demi/-/vue-demi-0.13.11.tgz#7d90369bdae8974d87b1973564ad390182410d99"
   integrity sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==
@@ -2771,6 +2771,13 @@ vue-eslint-parser@^9.0.1:
     esquery "^1.4.0"
     lodash "^4.17.21"
     semver "^7.3.6"
+
+vue-request@^2.0.0-rc.4:
+  version "2.0.0-rc.4"
+  resolved "https://registry.npmmirror.com/vue-request/-/vue-request-2.0.0-rc.4.tgz#395a24bce31fd182d7e855454e21f4e8118266da"
+  integrity sha512-Nv/CpfKlfwW9SVHakEukeSQpuqSwskeJsHK4gfw8KB8NZogWfR8+EU+XupLe+Dapnm+RAP+wZYzhw89v3Zyx2g==
+  dependencies:
+    vue-demi latest
 
 vue-router@4:
   version "4.1.6"
