@@ -8,6 +8,9 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 9527,
+    proxy: {
+      '/goodmap': 'http://192.168.10.11:8810/showtime'
+    }
 
   },
   resolve: {
