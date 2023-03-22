@@ -4,7 +4,7 @@ import router from "./router"
 import pinia from "./store"
 import ArcoVue from '@arco-design/web-vue';
 import '@arco-design/web-vue/dist/arco.css';
-
+import 'uno.css'
 const app = createApp(App)
 
 app.use(router)

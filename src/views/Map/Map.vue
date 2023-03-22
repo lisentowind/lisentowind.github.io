@@ -108,13 +108,14 @@ onUnmounted(() => {
   <div id="map" ref="mapRef" @contextmenu="(e) => e.preventDefault()">
     <LabelOperate />
   </div>
+  <div font-500 text-red mt-10>123213123</div>
 </template>
 
 <style lang="less" scoped>
 #map {
   position: relative;
-  width: 100%;
-  height: 100vh;
+  width: 50%;
+  height: 50vh;
   background-color: rgb(228 239 241);
 }
 </style>
