@@ -108,7 +108,7 @@ onUnmounted(() => {
   <div id="map" ref="mapRef" @contextmenu="(e) => e.preventDefault()">
     <LabelOperate />
   </div>
-  <div font-500 text-red mt-10>123213123</div>
+  <div font-500 text-red mt-10>测试原子Css</div>
 </template>
 
 <style lang="less" scoped>
