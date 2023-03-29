@@ -2,10 +2,11 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import UnoCSS from 'unocss/vite'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import { presetAttributify, presetUno } from "unocss";
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), UnoCSS({
+  plugins: [vue(), vueJsx(), UnoCSS({
     presets: [presetAttributify({}), presetUno()],
     rules: [
       [/^fs-(\d+\.{0,1}\d{0,2})$/, ([, d]) => ({ "font-size": `${d}px` })],

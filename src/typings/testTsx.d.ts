@@ -1,0 +1,1 @@
+type ChangeType = 'add' | 'minus'

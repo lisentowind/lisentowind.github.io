@@ -5,6 +5,7 @@ import pinia from "./store"
 import ArcoVue from '@arco-design/web-vue';
 import '@arco-design/web-vue/dist/arco.css';
 import 'uno.css'
+import '@/assets/style/custom.less'
 import VueQrcode from '@chenfengyuan/vue-qrcode';
 
 const app = createApp(App)
