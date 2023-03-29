@@ -4,6 +4,7 @@ import { Message } from '@arco-design/web-vue';
 import { computed, defineComponent, ref } from 'vue';
 import { useDebounceFn } from '@vueuse/core'
 import router from '@/router';
+type ChangeType = 'add' | 'minus'
 interface Props {
     msg?: string,
     width?: string,
