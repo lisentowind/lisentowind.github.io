@@ -1,6 +1,6 @@
 <script lang='ts' setup>
 import router from '@/router';
-import TSXVue from "../Tsx/index.vue"
+import TSXVue from "@/components/tsxComponents/btn-tsx.vue"
 
 
 const handleGo = (val: string) => {
@@ -10,28 +10,30 @@ const handleGo = (val: string) => {
 </script>
 
 <template>
-  <TSXVue :msg="'我是在父组件被引用的'" :backBtn="true">
-    <template #default>
-      <figure class="qrcode" mb-0 inline-block relative>
-        <vue-qrcode value="https://github.com/fengyuanchen" tag="svg" :options="{
-          errorCorrectionLevel: 'Q',
-          width: 200
-        }"></vue-qrcode>
-        <img class="qrcode__image" absolute src="https://avatars.githubusercontent.com/u/3456749" alt="Chen Fengyuan" />
-      </figure>
-      <a-space>
-        <a-button type="primary" @click="handleGo('Map')">map</a-button>
-        <a-button type="primary" @click="handleGo('Tsx')">Tsx</a-button>
-      </a-space>
-    </template>
-    <template #test>
-      <span>具名插槽</span>
-    </template>
-    <template #scope="scope">
-      <span>{{ scope.name }}</span>
-    </template>
+  <div>
+    <TSXVue :msg="'我是在父组件被引用的'" :backBtn="true">
+      <template #default>
+        <figure class="qrcode" mb-0 inline-block relative>
+          <vue-qrcode value="https://github.com/fengyuanchen" tag="svg" :options="{
+            errorCorrectionLevel: 'Q',
+            width: 200
+          }"></vue-qrcode>
+          <img class="qrcode__image" absolute src="https://avatars.githubusercontent.com/u/3456749" alt="Chen Fengyuan" />
+        </figure>
+        <a-space>
+          <a-button type="primary" @click="handleGo('Map')">map</a-button>
+          <a-button type="primary" @click="handleGo('Tsx')">Tsx</a-button>
+        </a-space>
+      </template>
+      <template #test>
+        <span>具名插槽</span>
+      </template>
+      <template #scope="scope">
+        <span>{{ scope.name }}</span>
+      </template>
 
-  </TSXVue>
+    </TSXVue>
+  </div>
 </template>
 
 
