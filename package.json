@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "dev-test": "vite --mode test",
     "build": "vue-tsc && vite build",
+    "build-test": "vue-tsc && vite build --mode test",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "prepare": "husky install"
