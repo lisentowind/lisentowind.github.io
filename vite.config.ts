@@ -27,7 +27,6 @@ export default defineConfig({
     proxy: {
       '/goodmap': 'http://192.168.10.11:8810/showtime'
     }
-    open: true
 
   },
   resolve: {
