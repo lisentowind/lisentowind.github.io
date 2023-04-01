@@ -25,7 +25,13 @@ const scrollEvent = (event: { target: { scrollTop: any; }; }) => {
 }
 
 onMounted(() => {
-    demo.value.addEventListener('scroll', scrollEvent)
+    demo.value.addEventListener('scroll', () => {
+        // 判断是否滚动到底部
+        if (demo.value.scrollTop + demo.value.clientHeight >= demo.value.scrollHeight) {
+            return
+        }
+        scrollEvent({ target: { scrollTop: demo.value.scrollTop } })
+    })
 })
 onUnmounted(() => {
     if (!demo.value) return
@@ -38,7 +44,7 @@ onUnmounted(() => {
     <div ref="demo" class="scroll-box demo" :style="`height: ${showNumber * itemHeight}px;`">
         <div class="scroll-blank" :style="`height: ${data.length * itemHeight}px;`"></div>
         <div class="scroll-data" :style="`top: ${positionTop}px;`">
-            <div v-for="(item, index) in activeList" :key="item" class="scroll-item">
+            <div v-for="(item) in activeList" :key="item" class="scroll-item">
                 {{ item }}
             </div>
         </div>
