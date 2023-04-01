@@ -47,7 +47,8 @@ const options = computed(() => {
     extent: zoomBounds,
     zoom: defualtLevel,
     maxZoom: maxLevel,
-    minZoom: minLevel
+    minZoom: minLevel,
+    enableRotation: false
   }
 })
 

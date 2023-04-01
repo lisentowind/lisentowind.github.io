@@ -234,11 +234,10 @@ export default function useOpenlayers() {
                             image: new Icon({
                                 src: item.icon,
                                 offsetOrigin: 'top-left',
-                                offset: [-50, 1],
+                                offset: [-50, 3],
                                 size: [200, 210],
                                 imgSize: [100, 110],
                                 scale: 0.4,
-                                crossOrigin: 'anonymous'
                             }),
                             text: new Text({
                                 textAlign: 'center', // 位置

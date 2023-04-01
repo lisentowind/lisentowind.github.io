@@ -23,6 +23,7 @@ const handleGo = (val: string) => {
         <a-space>
           <a-button type="primary" @click="handleGo('Map')">map</a-button>
           <a-button type="primary" @click="handleGo('Tsx')">Tsx</a-button>
+          <a-button type="primary" @click="handleGo('List')">List</a-button>
         </a-space>
       </template>
       <template #test>
