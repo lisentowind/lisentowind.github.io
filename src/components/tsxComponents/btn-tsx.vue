@@ -4,6 +4,10 @@ import { Message } from '@arco-design/web-vue';
 import { computed, defineComponent, ref } from 'vue';
 import { useDebounceFn } from '@vueuse/core'
 import router from '@/router';
+import useTheme from '@/hooks/useTheme'
+
+
+const { isDark } = useTheme()
 type ChangeType = 'add' | 'minus'
 interface Props {
     msg?: string,
@@ -66,9 +70,10 @@ export default defineComponent({
 
         return () => (
             <>
-                <div class="tsx-div-box" style={{ "width": width.value, "height": height.value }}>
-                    <div>{slots.default ? slots.default() : null}</div>
-                    <a-space>
+                <div class="tsx-div-box" style={{ "color": isDark.value ? 'white' : '#000', "width": width.value, "height": height.value, "background-color": isDark.value ? '#17171A' : '#F6F6F6' }}>
+                    {/* 默认插槽 */}
+                    <div class="tsx-default">{slots.default ? slots.default() : null}</div>
+                    <a-space fill={true}>
                         <span>{props.msg}</span>
                         <span>{count.value}</span>
                         <a-button type='primary' onClick={() => changeCount("add")}>增加</a-button>
@@ -93,13 +98,16 @@ export default defineComponent({
 <style lang='less' scoped>
 .tsx-div-box {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #1e1e20;
+    transition: cubic-bezier(0, .17, 0, 1.01) 0.8s;
+}
 
-    :deep(span) {
-        color: #fff;
-        font-size: 20px;
-    }
+.tsx-default {
+    height: 50px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>

@@ -9,7 +9,9 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRequest } from 'vue-request'
 import accepted from '@/assets/images/accepted.png'
 import LabelOperate from '@/components/openrate/index.vue'
+import { useFps } from '@vueuse/core'
 
+const fps = useFps()
 const { initOpenlayers, olRenderLayer, clearEvent, onOlReady, addFeatures, onLabelClick } = useOpenlayers()
 const {
   currentLabel,
@@ -108,17 +110,25 @@ onUnmounted(() => {
 <template>
   <div>
     <div id="map" ref="mapRef" @contextmenu="(e) => e.preventDefault()">
+      <!-- fps -->
+      <div class="fps">{{ fps }}</div>
       <LabelOperate />
     </div>
-    <div font-500 text-red mt-10>测试原子Css</div>
   </div>
 </template>
 
 <style lang="less" scoped>
 #map {
   position: relative;
-  width: 50%;
-  height: 50vh;
+  height: 100vh;
   background-color: rgb(228 239 241);
+  .fps{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    background-color: transparent;
+    padding: 5px;
+  }
 }
 </style>
