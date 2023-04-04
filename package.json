@@ -10,7 +10,6 @@
     "build": "vue-tsc && vite build",
     "build-test": "vue-tsc && vite build --mode test",
     "preview": "vite preview",
-    "build-test": "vue-tsc && vite build --mode test",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "prepare": "husky install"
   },
