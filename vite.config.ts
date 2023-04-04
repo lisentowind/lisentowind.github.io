@@ -1,11 +1,19 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
-import viteCompression from 'vite-plugin-compression'
+import UnoCSS from 'unocss/vite'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import { presetAttributify, presetUno } from "unocss";import viteCompression from 'vite-plugin-compression'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), viteCompression({
+  plugins: [vue(), vueJsx(), UnoCSS({
+    presets: [presetAttributify({}), presetUno()],
+    rules: [
+      [/^fs-(\d+\.{0,1}\d{0,2})$/, ([, d]) => ({ "font-size": `${d}px` })],
+      [/^leh-(\d+\.{0,1}\d{0,2})$/, ([, d]) => ({ "line-height": `${d}` })],
+    ]
+  }), viteCompression({
     verbose: true,
     disable: false,
     threshold: 10240,
@@ -15,7 +23,10 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 9527,
-    open: true
+    open: true,
+    proxy: {
+      '/goodmap': 'http://192.168.10.11:8810/showtime'
+    }
 
   },
   resolve: {

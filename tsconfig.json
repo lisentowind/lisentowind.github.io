@@ -15,7 +15,9 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@/*":["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "skipLibCheck": true,
     "noEmit": true
@@ -24,7 +26,8 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "typings/*"
   ],
   "references": [
     {
