@@ -1,7 +1,9 @@
 {
   "name": "my-blog-app",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "author": "tingFeng",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "dev-test": "vite --mode test",
