@@ -78,17 +78,17 @@ const playData = ref<DataItem[]>([
     <template #content>
       <a-space :direction="'vertical'" :size="40">
         <a-descriptions :size="'large'" :data="data" title="基础信息" :column="{ xs: 1, md: 2, lg: 3 }">
-          <a-descriptions-item v-for="item of data" :label="item.label">
+          <a-descriptions-item v-for="item of data" :label="item.label" :key="item.label">
             <a-tag>{{ item.value }}</a-tag>
           </a-descriptions-item>
         </a-descriptions>
         <a-descriptions :size="'large'" :data="interestData" title="兴趣爱好" :column="{ xs: 1, md: 2, lg: 3 }">
-          <a-descriptions-item v-for="item of interestData" :label="item.label">
+          <a-descriptions-item v-for="item of interestData" :label="item.label" :key="item.label">
             <a-tag>{{ item.value }}</a-tag>
           </a-descriptions-item>
         </a-descriptions>
         <a-descriptions :size="'large'" :data="playData" title="运动爱好" :column="{ xs: 1, md: 2, lg: 3 }">
-          <a-descriptions-item v-for="item of playData" :label="item.label">
+          <a-descriptions-item v-for="item of playData" :label="item.label" :key="item.label">
             <a-tag>{{ item.value }}</a-tag>
           </a-descriptions-item>
         </a-descriptions>
@@ -106,7 +106,7 @@ const playData = ref<DataItem[]>([
 :deep(.arco-descriptions-item-value) {
   font-size: 20px !important;
 }
-:deep(.arco-tag-size-medium){
+:deep(.arco-tag-size-medium) {
   font-size: 14px;
 }
 </style>

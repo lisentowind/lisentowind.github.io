@@ -1,6 +1,5 @@
-import useTheme from '@/hooks/useTheme'
 
-const { isDark } = useTheme()
+
 export const options = {
     background: {
         color: {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import type {  InternalAxiosRequestConfig } from 'axios'
 
 const { VITE_API_MAP_URL } = import.meta.env
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const { VITE_API_MAP_URL } = import.meta.env
+
 
 export interface MapData {
   center: string

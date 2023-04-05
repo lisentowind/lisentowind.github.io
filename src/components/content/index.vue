@@ -5,7 +5,6 @@ import { useUserStore } from '@/store'
 import UserLeft from './user-left/index.vue'
 import { loadFull } from 'tsparticles'
 import { options } from './options.js'
-import { computed } from 'vue'
 
 const particlesInit = async (engine: any) => {
   await loadFull(engine)
@@ -74,7 +73,7 @@ changeContent(userStore.selectMenu)
 <template>
   <div class="content-blog" :class="isDark ? 'content-blog-dark' : ''">
     <Particles v-if="!isDark" id="tsparticles" :particlesInit="particlesInit" :options="options" />
-    <Particles v-else="isDark" id="tsparticles" :particlesInit="particlesInit" :options="optionsDark" />
+    <Particles v-else-if="isDark" id="tsparticles" :particlesInit="particlesInit" :options="optionsDark" />
     <div class="content-blog-box">
       <!-- 左侧盒子 -->
       <div w250px class="content-blog-box-left" :class="isDark ? 'content-blog-box-left-dark' : ''"></div>
