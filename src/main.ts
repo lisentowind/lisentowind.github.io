@@ -7,11 +7,15 @@ import '@arco-design/web-vue/dist/arco.css';
 import 'uno.css'
 import '@/assets/style/custom.less'
 import VueQrcode from '@chenfengyuan/vue-qrcode';
+import Particles from "vue3-particles";
+
+
 
 const app = createApp(App)
 app.component(VueQrcode.name, VueQrcode);
 app.use(router)
 app.use(pinia)
 app.use(ArcoVue)
+app.use(Particles);
 
 app.mount('#app')

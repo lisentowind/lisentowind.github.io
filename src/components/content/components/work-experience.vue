@@ -1,8 +1,11 @@
 <script lang='ts' setup>
+import DefaultLayout from './default-layout.vue'
 </script>
 
 <template>
-  <div>work experience</div>
+  <DefaultLayout>
+    <template #top> 工作经历回顾 </template>
+  </DefaultLayout>
 </template>
 
 

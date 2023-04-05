@@ -2,6 +2,7 @@
 import useTheme from '@/hooks/useTheme'
 import { useUserStore } from '@/store'
 import { IconUser, IconAttachment, IconPenFill } from '@arco-design/web-vue/es/icon'
+import MusicPlayer from '@/components/music-player/index.vue'
 
 const userStore = useUserStore()
 const emit = defineEmits<{
@@ -21,8 +22,8 @@ const menuChange = (key: string | number) => {
       <a-space :size="20" mb-60px>
         <img src="@/assets/images/logos.png" w60px h60px class="user-left-avatar-img" alt="" />
         <a-space direction="vertical" :class="isDark ? 'user-left-avatar-isDark' : ''">
-          <span font-bold>我是一个小红花</span>
-          <span>email</span>
+          <span font-bold>我是小可爱</span>
+          <span><a-tag>shisanlailin@outlook.com</a-tag></span>
         </a-space>
       </a-space>
       <a-tabs :position="'left'" @change="menuChange" :default-active-key="userStore.selectMenu">
@@ -36,6 +37,8 @@ const menuChange = (key: string | number) => {
           <template #title> <icon-pen-fill /> 掌握技能 </template>
         </a-tab-pane>
       </a-tabs>
+
+      <MusicPlayer class="MusicPlayer" />
     </div>
   </div>
 </template>
@@ -46,6 +49,7 @@ const menuChange = (key: string | number) => {
   width: 100%;
   margin-bottom: 20px;
   color: black;
+  position: relative;
   .user-left-avatar-img {
     border-radius: 10px;
   }
@@ -59,6 +63,9 @@ const menuChange = (key: string | number) => {
   margin: 25px 0 0 0;
 }
 
+:deep(.arco-space-item) {
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
 :deep(.arco-space-item) .user-left-avatar-isDark {
   color: #fff !important;
 }
@@ -78,5 +85,11 @@ const menuChange = (key: string | number) => {
 :deep(.arco-tabs-tab-active),
 :deep(.arco-tabs-tab-active:hover) {
   color: rgb(var(--orange-6));
+}
+
+.MusicPlayer {
+  position: absolute;
+  bottom: -450px;
+  width: 250px !important;
 }
 </style>

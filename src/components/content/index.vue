@@ -3,7 +3,13 @@ import useTheme from '@/hooks/useTheme'
 import router from '@/router'
 import { useUserStore } from '@/store'
 import UserLeft from './user-left/index.vue'
+import { loadFull } from 'tsparticles'
+import { options } from './options.js'
+import { computed } from 'vue'
 
+const particlesInit = async (engine: any) => {
+  await loadFull(engine)
+}
 const { isDark } = useTheme()
 const userStore = useUserStore()
 const menuTabs = userStore.getMuenuList
@@ -13,11 +19,62 @@ const changeContent = (key: string | number) => {
     path: `/${menuTabs[Number(key) - 1]}`
   })
 }
+const optionsDark = {
+  ...options,
+  background: {
+    color: {
+      value: '#242424'
+    }
+  },
+  particles: {
+    color: {
+      value: '#ffda8c'
+    },
+    links: {
+      color: '#ffda8c',
+      distance: 150,
+      enable: true,
+      opacity: 0.5,
+      width: 1
+    },
+    collisions: {
+      enable: true
+    },
+    move: {
+      direction: 'none',
+      enable: true,
+      outMode: 'bounce',
+      random: false,
+      speed: 6,
+      straight: false
+    },
+    number: {
+      density: {
+        enable: true,
+        area: 800
+      },
+      value: 80
+    },
+    opacity: {
+      value: 0.5
+    },
+    shape: {
+      type: 'circle'
+    },
+    size: {
+      random: true,
+      value: 5
+    }
+  }
+}
+
 changeContent(userStore.selectMenu)
 </script>
 
 <template>
   <div class="content-blog" :class="isDark ? 'content-blog-dark' : ''">
+    <Particles v-if="!isDark" id="tsparticles" :particlesInit="particlesInit" :options="options" />
+    <Particles v-else="isDark" id="tsparticles" :particlesInit="particlesInit" :options="optionsDark" />
     <div class="content-blog-box">
       <!-- 左侧盒子 -->
       <div w250px class="content-blog-box-left" :class="isDark ? 'content-blog-box-left-dark' : ''"></div>
@@ -57,7 +114,7 @@ changeContent(userStore.selectMenu)
   padding: 10px 30px;
   .dis-flex();
   background-color: #e8e8fd;
-
+  position: relative;
   &-box {
     width: calc(100vw - 600px);
     min-width: 900px;
@@ -70,8 +127,9 @@ changeContent(userStore.selectMenu)
 
     &-left {
       height: 100%;
-      background-color: #ee4d38;
+      background-color: #ee4d38d4;
       border-radius: 25px;
+      transition: color 0.3s;
     }
 
     &-left-dark {
@@ -91,11 +149,11 @@ changeContent(userStore.selectMenu)
       justify-content: flex-start;
 
       &-left {
-        width: 18%;
+        width: 20%;
         height: 100%;
         background-color: #f8f8ff;
         box-sizing: border-box;
-        padding: 50px 25px 25px;
+        padding: 50px 15px 25px;
       }
 
       &-left-dark {
@@ -104,13 +162,12 @@ changeContent(userStore.selectMenu)
       }
 
       &-right {
-        width: 82%;
+        width: 80%;
         height: 100%;
-        background-color: #fcfcff;
+        background-color: #f8f8ff00;
       }
 
       &-right-dark {
-        background-color: transparent;
         border-left: 1px solid var(--color-border-2);
       }
     }
@@ -128,11 +185,18 @@ changeContent(userStore.selectMenu)
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+#tsparticles canvas {
+  position: absolute !important;
+  top: 60px !important;
+  left: 0 !important;
+  height: calc(100vh - 60px) !important;
 }
 </style>
