@@ -109,4 +109,8 @@ const playData = ref<DataItem[]>([
 :deep(.arco-tag-size-medium) {
   font-size: 14px;
 }
+
+:deep(.arco-descriptions-item-label-block){
+  color: inherit !important;
+}
 </style>

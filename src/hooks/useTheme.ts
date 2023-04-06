@@ -6,7 +6,13 @@ export default function useTheme() {
     const isDark = computed(() => {
         return themeStore.theme === 'dark';
     })
+
+    const changeBack = (back: string) => {
+        themeStore.toggleNowBack(back);
+    }
+
     return {
-        isDark
+        isDark,
+        changeBack
     }
 }
