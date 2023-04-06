@@ -16,7 +16,6 @@ const menuChange = (key: string | number) => {
 </script>
 
 <template>
-  <div>
     <!-- 头像 -->
     <div class="user-left-avatar">
       <a-space :size="20" mb-60px>
@@ -40,13 +39,13 @@ const menuChange = (key: string | number) => {
 
       <MusicPlayer class="MusicPlayer" />
     </div>
-  </div>
 </template>
 
 
 <style lang='less' scoped>
 .user-left-avatar {
   width: 100%;
+  height: 100%;
   margin-bottom: 20px;
   color: black;
   position: relative;
@@ -89,7 +88,7 @@ const menuChange = (key: string | number) => {
 
 .MusicPlayer {
   position: absolute;
-  bottom: -450px;
+  bottom: 30px;
   width: 250px !important;
 }
 </style>

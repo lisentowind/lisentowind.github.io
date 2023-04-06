@@ -26,6 +26,7 @@ const optionsDark = {
     }
   },
   particles: {
+    ...options.particles,
     color: {
       value: '#ffda8c'
     },
@@ -36,34 +37,6 @@ const optionsDark = {
       opacity: 0.5,
       width: 1
     },
-    collisions: {
-      enable: true
-    },
-    move: {
-      direction: 'none',
-      enable: true,
-      outMode: 'bounce',
-      random: false,
-      speed: 6,
-      straight: false
-    },
-    number: {
-      density: {
-        enable: true,
-        area: 800
-      },
-      value: 80
-    },
-    opacity: {
-      value: 0.5
-    },
-    shape: {
-      type: 'circle'
-    },
-    size: {
-      random: true,
-      value: 5
-    }
   }
 }
 
@@ -114,6 +87,7 @@ changeContent(userStore.selectMenu)
   .dis-flex();
   background-color: #e8e8fd;
   position: relative;
+
   &-box {
     width: calc(100vw - 600px);
     min-width: 900px;

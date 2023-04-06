@@ -17,11 +17,11 @@ const data = ref<DataItem[]>([
   },
   {
     label: '现住地址🏠',
-    value: '四川省成都市成华区'
+    value: '四川省/成都市/成华区'
   },
   {
     label: '故乡🏠',
-    value: '四川巴中'
+    value: '四川/巴中'
   },
   {
     label: '详细地址🛣️',
@@ -76,18 +76,18 @@ const playData = ref<DataItem[]>([
   <DefaultLayout>
     <template #top> TingFeng </template>
     <template #content>
-      <a-space :direction="'vertical'" :size="40">
-        <a-descriptions :size="'large'" :data="data" title="基础信息" :column="{ xs: 1, md: 2, lg: 3 }">
+      <a-space :direction="'vertical'" :size="20">
+        <a-descriptions :size="'large'" :data="data" title="基础信息" :column="{ xs: 1, md: 2, lg: 2 }">
           <a-descriptions-item v-for="item of data" :label="item.label" :key="item.label">
             <a-tag>{{ item.value }}</a-tag>
           </a-descriptions-item>
         </a-descriptions>
-        <a-descriptions :size="'large'" :data="interestData" title="兴趣爱好" :column="{ xs: 1, md: 2, lg: 3 }">
+        <a-descriptions :size="'large'" :data="interestData" title="兴趣爱好" :column="{ xs: 1, md: 2, lg: 2 }">
           <a-descriptions-item v-for="item of interestData" :label="item.label" :key="item.label">
             <a-tag>{{ item.value }}</a-tag>
           </a-descriptions-item>
         </a-descriptions>
-        <a-descriptions :size="'large'" :data="playData" title="运动爱好" :column="{ xs: 1, md: 2, lg: 3 }">
+        <a-descriptions :size="'large'" :data="playData" title="运动爱好" :column="{ xs: 1, md: 2, lg: 2 }">
           <a-descriptions-item v-for="item of playData" :label="item.label" :key="item.label">
             <a-tag>{{ item.value }}</a-tag>
           </a-descriptions-item>

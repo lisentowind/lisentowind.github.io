@@ -3,29 +3,23 @@
 export const options = {
     background: {
         color: {
-            value:'#f6f6f6'
+            value: '#f6f6f6'
         }
     },
-    fpsLimit: 60,
+    fpsLimit:120,
     interactivity: {
         events: {
             onClick: {
-                enable: true,
+                enable: false,
                 mode: 'push'
             },
             onHover: {
                 enable: true,
-                mode: 'repulse'
+                mode: "repulse"
             },
             resize: true
         },
         modes: {
-            bubble: {
-                distance: 400,
-                duration: 2,
-                opacity: 0.8,
-                size: 40
-            },
             push: {
                 quantity: 4
             },
@@ -60,7 +54,7 @@ export const options = {
         number: {
             density: {
                 enable: true,
-                area: 800
+                area: 1500
             },
             value: 80
         },
@@ -71,7 +65,7 @@ export const options = {
             type: 'circle'
         },
         size: {
-            random: true,
+            random: false,
             value: 5
         }
     },
