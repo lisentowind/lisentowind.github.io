@@ -1,11 +1,16 @@
 <script lang='ts' setup>
 import { ref } from 'vue'
+import useTheme from '@/hooks/useTheme'
 import DefaultLayout from './default-layout.vue'
 
 interface DataItem {
   label: string
   value: string
 }
+
+const { isDark } = useTheme()
+
+
 const data = ref<DataItem[]>([
   {
     label: '姓名🤵',
@@ -76,7 +81,7 @@ const playData = ref<DataItem[]>([
   <DefaultLayout>
     <template #top> TingFeng </template>
     <template #content>
-      <a-space :direction="'vertical'" :size="20">
+      <a-space :direction="'vertical'" :size="20" :class="isDark ? 'in-user-info' : 'out-user-info'">
         <a-descriptions :size="'large'" :data="data" title="基础信息" :column="{ xs: 1, md: 2, lg: 2 }">
           <a-descriptions-item v-for="item of data" :label="item.label" :key="item.label">
             <a-tag>{{ item.value }}</a-tag>
@@ -103,14 +108,93 @@ const playData = ref<DataItem[]>([
   font-size: 20px;
   font-weight: bold;
 }
+
 :deep(.arco-descriptions-item-value) {
   font-size: 20px !important;
 }
+
 :deep(.arco-tag-size-medium) {
   font-size: 14px;
 }
 
-:deep(.arco-descriptions-item-label-block){
+:deep(.arco-descriptions-item-label-block) {
   color: inherit !important;
+}
+
+.in-user-info {
+  -webkit-animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.out-user-info {
+  -webkit-animation: fade-in-left 0.6s;
+  animation: fade-in-left 0.6s;
+}
+
+/**
+ * ----------------------------------------
+ * animation fade-in-right
+ * ----------------------------------------
+ */
+@-webkit-keyframes fade-in-right {
+  0% {
+    -webkit-transform: translateX(50px);
+    transform: translateX(50px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    -webkit-transform: translateX(50px);
+    transform: translateX(50px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+/**
+ * ----------------------------------------
+ * animation fade-in-left
+ * ----------------------------------------
+ */
+@-webkit-keyframes fade-in-left {
+  0% {
+    -webkit-transform: translateX(-50px);
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-left {
+  0% {
+    -webkit-transform: translateX(-50px);
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 </style>

@@ -95,10 +95,12 @@ const initVanta = (val: boolean) => {
         minHeight: 200.00,
         minWidth: 200.00,
         skyColor: 0x0,
-        cloudColor: 0x243555,
+        cloudColor: 0x4d4d91,
+        cloudShadowColor: 0x0,
         sunColor: 0x0,
-        sunGlareColor: 0x110603,
-        sunlightColor: 0x484e6e
+        sunGlareColor: 0xf0f0f,
+        sunlightColor: 0x8070b1,
+        speed: 1.30
       });
     } else if (!val && themeStore.nowBack === 'vanta') {
       vantaEffect.value = CLOUDS({
@@ -110,7 +112,14 @@ const initVanta = (val: boolean) => {
         touchControls: true,
         gyroControls: false,
         minHeight: 200.00,
-        minWidth: 200.00
+        minWidth: 200.00,
+        skyColor: 0x6db1cd,
+        cloudColor: 0xa6a6be,
+        cloudShadowColor: 0x2a3b50,
+        sunColor: 0xff6800,
+        sunGlareColor: 0xff3800,
+        sunlightColor: 0xff8230,
+        speed: 1.30
       });
     }
   } catch (error) {
@@ -198,10 +207,23 @@ onBeforeUnmount(() => {
       background-color: #ee4d38d4;
       border-radius: 25px;
       transition: color 0.3s;
+      transform: translateX(0px);
+      transition: transform 1s;
+      transition: all 0.5s;
     }
 
     &-left-dark {
       background-color: #ce4b3a9f;
+      // 慢慢移动元素X轴到100px
+      transform: translateX(46px);
+      width: 20%;
+      height: 90%;
+      transition: transform 1s;
+      border-radius: 20px 0 0 25px;
+      transition: all 0.5s;
+
+
+
     }
 
     &-top {
@@ -241,8 +263,8 @@ onBeforeUnmount(() => {
     }
 
     &-top-dark {
-      border: 2px solid var(--color-border-2);
-      box-shadow: 0 0 10px 0 var(--color-border-2);
+      border: 1px solid var(--color-border-3);
+      box-shadow: 0 0 5px 0 var(--color-border-3);
     }
   }
 }

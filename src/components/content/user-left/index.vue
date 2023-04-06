@@ -16,29 +16,29 @@ const menuChange = (key: string | number) => {
 </script>
 
 <template>
-    <!-- 头像 -->
-    <div class="user-left-avatar">
-      <a-space :size="20" mb-60px>
-        <img src="@/assets/images/logos.png" w60px h60px class="user-left-avatar-img" alt="" />
-        <a-space direction="vertical" :class="isDark ? 'user-left-avatar-isDark' : ''">
-          <span font-bold>我是小可爱</span>
-          <span><a-tag>shisanlailin@outlook.com</a-tag></span>
-        </a-space>
+  <!-- 头像 -->
+  <div class="user-left-avatar">
+    <a-space :size="10" mb-60px>
+      <img src="@/assets/images/logos.png" w60px h60px class="user-left-avatar-img" alt="" />
+      <a-space direction="vertical" :class="isDark ? 'user-left-avatar-isDark' : ''">
+        <span font-bold>我是小可爱</span>
+        <span><a-tag>shisanlailin@outlook.com</a-tag></span>
       </a-space>
-      <a-tabs :position="'left'" @change="menuChange" :default-active-key="userStore.selectMenu">
-        <a-tab-pane key="1">
-          <template #title> <icon-user /> 个人信息 </template>
-        </a-tab-pane>
-        <a-tab-pane key="2">
-          <template #title> <icon-attachment /> 工作经历 </template>
-        </a-tab-pane>
-        <a-tab-pane key="3">
-          <template #title> <icon-pen-fill /> 掌握技能 </template>
-        </a-tab-pane>
-      </a-tabs>
+    </a-space>
+    <a-tabs :position="'left'" @change="menuChange" :default-active-key="userStore.selectMenu">
+      <a-tab-pane key="1">
+        <template #title> <icon-user /> 个人信息 </template>
+      </a-tab-pane>
+      <a-tab-pane key="2">
+        <template #title> <icon-attachment /> 工作经历 </template>
+      </a-tab-pane>
+      <a-tab-pane key="3">
+        <template #title> <icon-pen-fill /> 掌握技能 </template>
+      </a-tab-pane>
+    </a-tabs>
 
-      <MusicPlayer class="MusicPlayer" />
-    </div>
+    <MusicPlayer class="MusicPlayer" />
+  </div>
 </template>
 
 
@@ -49,6 +49,7 @@ const menuChange = (key: string | number) => {
   margin-bottom: 20px;
   color: black;
   position: relative;
+
   .user-left-avatar-img {
     border-radius: 10px;
   }
@@ -57,6 +58,7 @@ const menuChange = (key: string | number) => {
 :deep(.arco-tabs-nav) {
   width: 100%;
 }
+
 :deep(.arco-tabs-tab) {
   font-size: 17px;
   margin: 25px 0 0 0;
@@ -65,6 +67,7 @@ const menuChange = (key: string | number) => {
 :deep(.arco-space-item) {
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
+
 :deep(.arco-space-item) .user-left-avatar-isDark {
   color: #fff !important;
 }
