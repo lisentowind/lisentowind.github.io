@@ -1,14 +1,24 @@
 <script lang='ts' setup>
-import music from '@/assets/music/春三月-司南.320.mp3'
+import 春三月 from '@/assets/music/春三月-司南.320.mp3'
+import 如果没有你 from '@/assets/music/如果没有你-萧敬腾.128.mp3'
 import logos from '@/assets/images/logos.png'
 import { useToggle } from '@vueuse/core'
-import { IconPlayArrowFill, IconSwap } from '@arco-design/web-vue/es/icon'
+import {
+  IconPlayArrowFill,
+  IconSwap,
+  IconDoubleRight,
+  IconDoubleLeft,
+  IconMenuUnfold,
+  IconMusic
+} from '@arco-design/web-vue/es/icon'
 import { ref, watch } from 'vue'
 import useTheme from '@/hooks/useTheme'
 
 const { isDark } = useTheme()
 const [play, setPlay] = useToggle(false)
 const audio = ref<HTMLAudioElement | null>()
+const musicArr = ref<any[]>([春三月, 如果没有你])
+const music = ref(musicArr.value[0])
 const playMusic = () => {
   if (audio.value) {
     audio.value.play()
@@ -52,8 +62,23 @@ watch(
         getInfo()
       }, 1000)
     }
+    playMusic()
   }
 )
+
+const changeMusicList = (prev: boolean) => {
+  const index = musicArr.value.findIndex((item) => item === music.value)
+  if (prev) {
+    music.value = musicArr.value[index - 1] || musicArr.value[musicArr.value.length - 1]
+  } else {
+    music.value = musicArr.value[index + 1] || musicArr.value[0]
+  }
+}
+
+const changeMenuMusicList = (value: string | number | Record<string, any> | undefined, ev: Event) => {
+  const index = musicArr.value.findIndex((item) => item.match(/[\u4e00-\u9fa5]+/g)?.join() === value)
+  music.value = musicArr.value[index]
+}
 </script>
 
 <template>
@@ -71,10 +96,23 @@ watch(
       <a-space>
         <!-- 名字 music正则截取汉字 -->
         <span class="img-music name-music">{{ music.match(/[\u4e00-\u9fa5]+/g)?.join() }}</span>
-        <span class="img-music time-music">{{ currentTime }} / {{ duration }}</span>
+        <span class="img-music time-music">{{ currentTime ? currentTime : '0:00' }} / {{ duration ? duration : '0:00' }}</span>
+        <span class="img-music prev-music" @click="changeMusicList(true)"><icon-double-left /></span>
+        <span class="img-music next-music" @click="changeMusicList(false)"><icon-double-right /></span>
+        <div class="img-music list-music">
+          <a-dropdown trigger="hover" position="tr" @select="changeMenuMusicList">
+            <icon-menu-unfold />
+            <template #content>
+              <a-doption v-for="item in musicArr" :key="item" :value="item.match(/[\u4e00-\u9fa5]+/g)?.join()"
+                ><template #icon>
+                  <icon-music />
+                </template>
+                {{ item.match(/[\u4e00-\u9fa5]+/g)?.join() }}</a-doption
+              >
+            </template>
+          </a-dropdown>
+        </div>
       </a-space>
-
-      <!-- <audio ref="audio" class="audio-music" :src="music" controls loop></audio> -->
       <audio ref="audio" class="audio-music" :src="music" loop></audio>
     </a-space>
   </div>
@@ -87,12 +125,23 @@ audio {
   width: 250px !important;
   z-index: 99;
 }
+.musicBox {
+  height: 55px;
+  backdrop-filter: blur(10px);
+}
 
 .img-music {
   position: absolute;
   top: 0;
   z-index: 999;
   border-radius: 50%;
+  backdrop-filter: blur(10px);
+  button {
+    position: absolute;
+    top: 0;
+    z-index: 999;
+    border-radius: 50%;
+  }
 }
 .trans-img {
   // 自身无限X轴旋转
@@ -137,12 +186,31 @@ audio {
 }
 .time-music {
   top: 35px;
-  left: 65px;
+  left: 87px;
   font-size: 16px;
 }
-.name-music{
-    top: 5px;
-    left: 65px;
-    font-size: 18px;
+.name-music {
+  top: 3px;
+  left: 65px;
+  font-size: 18px;
+}
+
+.prev-music {
+  top: 35px;
+  left: 60px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.next-music {
+  top: 35px;
+  left: 180px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.list-music {
+  top: 35px;
+  left: 207px;
+  font-size: 16px;
+  cursor: pointer;
 }
 </style>

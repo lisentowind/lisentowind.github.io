@@ -91,7 +91,7 @@ const menuChange = (key: string | number) => {
 
 .MusicPlayer {
   position: absolute;
-  bottom: 30px;
+  bottom: 0px;
   width: 250px !important;
 }
 </style>
