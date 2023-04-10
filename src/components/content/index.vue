@@ -6,15 +6,13 @@ import UserLeft from './user-left/index.vue'
 import { loadFull } from 'tsparticles'
 import { options } from './options.js'
 import { onMounted, ref, watch, onBeforeUnmount, nextTick } from 'vue'
-import CLOUDS from 'vanta/dist/vanta.clouds.min.js'
-import * as THREE from "three";
-import { Message } from '@arco-design/web-vue'
-
+import useVanta from '@/hooks/useVanta.js'
 
 const particlesInit = async (engine: any) => {
   await loadFull(engine)
 }
 const { isDark } = useTheme()
+const { innitVantaFun } = useVanta()
 const userStore = useUserStore()
 const themeStore = useThemeStore()
 const menuTabs = userStore.getMuenuList
@@ -42,7 +40,7 @@ const optionsDark = {
       enable: true,
       opacity: 0.5,
       width: 1
-    },
+    }
   }
 }
 
@@ -57,92 +55,60 @@ onMounted(() => {
   }
 })
 
-watch(() => isDark.value, (val) => {
-  if (themeStore.nowBack === 'vanta' && vantaRef.value) {
-    initVanta(val)
-    return
+watch(
+  () => isDark.value,
+  (val) => {
+    if (themeStore.nowBack === 'vanta' && vantaRef.value) {
+      initVanta(val)
+      return
+    }
+    if (vantaEffect.value) vantaEffect.value.destroy()
   }
-  if (vantaEffect.value) vantaEffect.value.destroy()
-})
+)
 
-watch(() => themeStore.nowBack, (val) => {
-  if (val === 'vanta') {
-    nextTick(() => {
-      if (vantaRef.value) {
-        initVanta(isDark.value)
-        return
-      }
-    })
+watch(
+  () => themeStore.nowBack,
+  (val) => {
+    if (val === 'vanta') {
+      nextTick(() => {
+        if (vantaRef.value) {
+          initVanta(isDark.value)
+          return
+        }
+      })
+    }
+    if (vantaEffect.value) vantaEffect.value.destroy()
+  },
+  {
+    deep: true
   }
-  if (vantaEffect.value) vantaEffect.value.destroy()
-}, {
-  deep: true
-})
-
+)
 
 const initVanta = (val: boolean) => {
-  try {
-    if (vantaEffect.value) vantaEffect.value.destroy()
-    if (val && themeStore.nowBack === 'vanta') {
-      vantaEffect.value = CLOUDS({
-        el: vantaRef.value,
-        THREE: THREE,
-      })
-      vantaEffect.value.setOptions({
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        skyColor: 0x0,
-        cloudColor: 0x4d4d91,
-        cloudShadowColor: 0x0,
-        sunColor: 0x0,
-        sunGlareColor: 0xf0f0f,
-        sunlightColor: 0x8070b1,
-        speed: 1.30
-      });
-    } else if (!val && themeStore.nowBack === 'vanta') {
-      vantaEffect.value = CLOUDS({
-        el: vantaRef.value,
-        THREE: THREE,
-      })
-      vantaEffect.value.setOptions({
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        skyColor: 0x6db1cd,
-        cloudColor: 0xa6a6be,
-        cloudShadowColor: 0x2a3b50,
-        sunColor: 0xff6800,
-        sunGlareColor: 0xff3800,
-        sunlightColor: 0xff8230,
-        speed: 1.30
-      });
-    }
-  } catch (error) {
-    Message.error('vanta初始化失败')
-    throw new Error(error as string)
-  }
+  // 初始化vanta
+  innitVantaFun(val, vantaEffect, vantaRef)
 }
-
 
 onBeforeUnmount(() => {
   vantaEffect.value.destroy()
 })
-
 </script>
 
 <template>
   <div class="content-blog" :class="isDark ? 'content-blog-dark' : ''">
-    <Particles v-if="!isDark && themeStore.nowBack === 'Particles'" id="tsparticles" :particlesInit="particlesInit"
-      :options="options" />
-    <Particles v-else-if="isDark && themeStore.nowBack === 'Particles'" id="tsparticles" :particlesInit="particlesInit"
-      :options="optionsDark" />
-    <div v-else ref='vantaRef' class="box-vanta">
-    </div>
+    <Particles
+      v-if="!isDark && themeStore.nowBack === 'Particles'"
+      id="tsparticles"
+      :particlesInit="particlesInit"
+      :options="options"
+    />
+    <Particles
+      v-else-if="isDark && themeStore.nowBack === 'Particles'"
+      id="tsparticles"
+      :particlesInit="particlesInit"
+      :options="optionsDark"
+    />
+    <div v-else ref="vantaRef" class="box-vanta"> </div>
     <div class="content-blog-box">
       <!-- 左侧盒子 -->
       <div w250px class="content-blog-box-left" :class="isDark ? 'content-blog-box-left-dark' : ''"></div>
@@ -221,9 +187,6 @@ onBeforeUnmount(() => {
       transition: transform 1s;
       border-radius: 20px 0 0 25px;
       transition: all 0.5s;
-
-
-
     }
 
     &-top {
