@@ -14,6 +14,7 @@ import {
 import { ref, watch } from 'vue'
 import useTheme from '@/hooks/useTheme'
 
+let time: any = null
 const { isDark } = useTheme()
 const [play, setPlay] = useToggle(false)
 const audio = ref<HTMLAudioElement | null>()
@@ -53,7 +54,7 @@ const getInfo = () => {
     progress.value = Math.floor((audio.value.currentTime / audio.value.duration) * 100)
   }
 }
-let time: any = null
+
 watch(
   () => duration.value,
   (val) => {
