@@ -27,7 +27,7 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "typings/*"
+    "src/utils/request.ts"
   ],
   "references": [
     {

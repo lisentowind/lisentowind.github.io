@@ -5,6 +5,7 @@ import { useThemeStore } from '@/store'
 import { Message } from '@arco-design/web-vue'
 import useTheme from '@/hooks/useTheme'
 import UserInfo from '../user-info/user-info.vue'
+import Weather from '../weather/index.vue'
 
 const fps = useFps()
 const { isDark, changeBack } = useTheme()
@@ -48,32 +49,50 @@ const changeBacks = (val: string) => {
     })
   }
 }
-
 </script>
 
 <template>
   <div class="menu-demo" :style="{ color: isDark ? '#fff' : '#000' }">
-    <div>欢迎来到,<a-typography-text :strong="true">TingFeng</a-typography-text> 的世界!!!</div>
+    <div>
+      <a-space :size="55">
+        <span>欢迎来到,<a-typography-text :strong="true">TingFeng</a-typography-text> 的世界!!!</span>
+        <Weather />
+      </a-space>
+    </div>
     <a-space :size="20">
       <span :style="{ color: isDark ? '#fff' : '#000' }">FPS: {{ fps }}</span>
       <a-button type="text" @click="changeTheme" :style="{ color: isDark ? '#fff' : '#000' }">
         <template #icon>
-          <icon-sun-fill v-if="isDark" :style="{
-            color: '#fff'
-          }" />
-          <icon-moon-fill v-else :style="{
-            color: '#000'
-          }" />
+          <icon-sun-fill
+            v-if="isDark"
+            :style="{
+              color: '#fff'
+            }"
+          />
+          <icon-moon-fill
+            v-else
+            :style="{
+              color: '#000'
+            }"
+          />
         </template>
         主题
       </a-button>
 
-      <a-button type="text" v-if="themeStore.nowBack === 'Particles'" @click="changeBacks('vanta')"
-        :style="{ color: isDark ? '#fff' : '#000' }">
+      <a-button
+        type="text"
+        v-if="themeStore.nowBack === 'Particles'"
+        @click="changeBacks('vanta')"
+        :style="{ color: isDark ? '#fff' : '#000' }"
+      >
         切换动态背景
       </a-button>
-      <a-button type="text" v-else-if="themeStore.nowBack === 'vanta'" @click="changeBacks('Particles')"
-        :style="{ color: isDark ? '#fff' : '#000' }">
+      <a-button
+        type="text"
+        v-else-if="themeStore.nowBack === 'vanta'"
+        @click="changeBacks('Particles')"
+        :style="{ color: isDark ? '#fff' : '#000' }"
+      >
         切换动态背景
       </a-button>
       <UserInfo />

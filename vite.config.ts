@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import UnoCSS from 'unocss/vite'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import { presetAttributify, presetUno } from "unocss";import viteCompression from 'vite-plugin-compression'
+import { presetAttributify, presetUno } from "unocss"; import viteCompression from 'vite-plugin-compression'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,7 +25,17 @@ export default defineConfig({
     port: 9527,
     open: true,
     proxy: {
-      '/goodmap': 'http://192.168.10.11:8810/showtime'
+      '/goodmap': 'http://192.168.10.11:8810/showtime',
+      "/weathernow": {
+        target: "https://devapi.qweather.com/v7/weather",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/weathernow/, '')
+      },
+      "/geoapi": {
+        target: "https://geoapi.qweather.com/v2/city/lookup",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/geoapi/, '')
+      }
     }
 
   },
