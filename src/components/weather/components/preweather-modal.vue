@@ -65,7 +65,7 @@ watch(
         <a-space v-for="item in werather7D" :key="item.wind360Day" direction="vertical" :align="'center'" :size="20">
           <a-typography-text>{{ dayjs(item.fxDate).format('MM-DD') }} </a-typography-text>
           <a-typography-text>{{ item.textDay }} </a-typography-text>
-          <a-typography-text>{{ `${item.tempMin}'°' /${item.tempMax}'°'` }} </a-typography-text>
+          <a-typography-text>{{ `${item.tempMin}° / ${item.tempMax}°` }} </a-typography-text>
         </a-space>
       </a-space>
     </div>
