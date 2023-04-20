@@ -1,0 +1,1 @@
+import{E as e}from"./tsparticles-engine-3b45a3b7.js";class t extends e{constructor(e){super(e),this.handleClickMode=e=>{if("pause"!==e)return;const t=this.container;t.getAnimationStatus()?t.pause():t.play()}}clear(){}init(){}async interact(){}isEnabled(){return!0}reset(){}}function n(e){e.addInteractor("externalPause",(e=>new t(e)))}export{n as l};
