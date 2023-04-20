@@ -69,30 +69,31 @@ onMounted(async () => {
 
 <template>
   <div class="weatherSpace" @click="weatherInfoModal">
-    <a-space v-if="weatherInfo">
-      <Icon size="20">
-        <component :is="icons[0]" v-if="!isDark" />
-        <component :is="icons[1]" v-if="isDark" />
-      </Icon>
-      <a-typography-text>
-        <span class="cityName" :class="{ 'cityName-Dark': isDark ? true : false }">{{ simpelCityInfo?.name }}{{}}</span>
-      </a-typography-text>
-      {{ weatherInfo?.now && weatherInfo.now.temp + '°' }} {{ weatherInfo?.now && weatherInfo?.now.text }}
-      <Icon size="20">
-        <Location20Filled v-if="!isDark" />
-        <Location20Regular v-if="isDark" />
-      </Icon>
-    </a-space>
-    <a-space v-else>
-      <Icon size="20">
-        <component :is="icons[0]" v-if="!isDark" />
-        <component :is="icons[1]" v-if="isDark" />
-      </Icon>
-      <a-typography-text>
-        <span class="cityName" :class="{ 'cityName-Dark': isDark ? true : false }">天气加载中 </span><icon-sync spin />
-      </a-typography-text>
-    </a-space>
-
+    <a-button type="text" :style="{ color: isDark ? '#fff' : '#000' }">
+      <a-space v-if="weatherInfo">
+        <Icon size="20">
+          <component :is="icons[0]" v-if="!isDark" />
+          <component :is="icons[1]" v-if="isDark" />
+        </Icon>
+        <a-typography-text>
+          <span class="cityName" :class="{ 'cityName-Dark': isDark ? true : false }">{{ simpelCityInfo?.name }}{{}}</span>
+        </a-typography-text>
+        {{ weatherInfo?.now && weatherInfo.now.temp + '°' }} {{ weatherInfo?.now && weatherInfo?.now.text }}
+        <Icon size="20">
+          <Location20Filled v-if="!isDark" />
+          <Location20Regular v-if="isDark" />
+        </Icon>
+      </a-space>
+      <a-space v-else>
+        <Icon size="20">
+          <component :is="icons[0]" v-if="!isDark" />
+          <component :is="icons[1]" v-if="isDark" />
+        </Icon>
+        <a-typography-text>
+          <span class="cityName" :class="{ 'cityName-Dark': isDark ? true : false }">天气加载中 </span><icon-sync spin />
+        </a-typography-text>
+      </a-space>
+    </a-button>
     <preweatherModal
       v-model="previewWeatherVisibel"
       :title="'天气详情'"
@@ -112,16 +113,5 @@ onMounted(async () => {
 }
 .cityName-Dark {
   color: #fff;
-}
-.weatherSpace {
-  box-sizing: border-box;
-  border: 1px solid transparent;
-  padding: 0 5px;
-  border-radius: 15px;
-  cursor: pointer;
-  &:hover {
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--color-border-2);
-  }
 }
 </style>

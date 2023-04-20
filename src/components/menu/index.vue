@@ -57,11 +57,13 @@ const changeBacks = (val: string) => {
 <template>
   <div class="menu-demo" :style="{ color: isDark ? '#fff' : '#000' }">
     <div>
-      <a-space :size="55">
+      <a-space :size="15">
         <span>欢迎来到,<a-typography-text :strong="true">TingFeng</a-typography-text> 的世界!!!</span>
         <Weather />
 
-        <span>{{ dayjs(now).format('YYYY-MM-DD HH:mm:ss') }}</span>
+        <a-button type="text" :style="{ color: isDark ? '#fff' : '#000' }">
+          <span>{{ dayjs(now).format('YYYY-MM-DD HH:mm:ss') }}</span></a-button
+        >
       </a-space>
     </div>
     <a-space :size="20">
