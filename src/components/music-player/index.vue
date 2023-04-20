@@ -1,6 +1,6 @@
 <script lang='ts' setup>
-import CSY from '@/assets/music/春三月-司南.mp3'
-import RGMYN from '@/assets/music/如果没有你-萧敬腾.mp3'
+import CSY from '/music/春三月-司南.mp3'
+import RGMYN from '/music/如果没有你-萧敬腾.mp3'
 import logos from '@/assets/images/logos.png'
 import { useToggle } from '@vueuse/core'
 import {
