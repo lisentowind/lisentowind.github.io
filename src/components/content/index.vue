@@ -120,13 +120,15 @@ onBeforeUnmount(() => {
         </div>
         <!-- 右侧展示 -->
         <div class="content-blog-box-top-right" :class="isDark ? 'content-blog-box-top-right-dark' : ''">
-          <router-view v-slot="{ Component }">
-            <transition name="fade" mode="out-in">
-              <keep-alive>
-                <component :is="Component" />
-              </keep-alive>
-            </transition>
-          </router-view>
+          <a-scrollbar style="height: calc(100vh - 100px); overflow: auto">
+            <router-view v-slot="{ Component }">
+              <transition name="fade" mode="out-in">
+                <keep-alive>
+                  <component :is="Component" />
+                </keep-alive>
+              </transition>
+            </router-view>
+          </a-scrollbar>
         </div>
       </div>
     </div>
