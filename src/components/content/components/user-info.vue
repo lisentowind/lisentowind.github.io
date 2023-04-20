@@ -18,7 +18,7 @@ const data = ref<DataItem[]>([
   },
   {
     label: '手机号📱',
-    value: '19160368613'
+    value: '191********'
   },
   {
     label: '现住地址🏠',
