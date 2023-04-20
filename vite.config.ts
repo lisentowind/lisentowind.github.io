@@ -5,6 +5,9 @@ import UnoCSS from 'unocss/vite'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { presetAttributify, presetUno } from "unocss"; import viteCompression from 'vite-plugin-compression'
 
+// 使用环境变量
+const { VITE_API_BASE_URL } = process.env
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), vueJsx(), UnoCSS({
@@ -68,5 +71,6 @@ export default defineConfig({
         }
       }
     }
-  }
+  },
+  base: VITE_API_BASE_URL,
 })
