@@ -1,4 +1,5 @@
 <script lang='ts' setup>
+import { useNow } from '@vueuse/core'
 import { IconSunFill, IconMoonFill } from '@arco-design/web-vue/es/icon'
 import { useDark, useToggle, useFps } from '@vueuse/core'
 import { useThemeStore } from '@/store'
@@ -6,7 +7,9 @@ import { Message } from '@arco-design/web-vue'
 import useTheme from '@/hooks/useTheme'
 import UserInfo from '../user-info/user-info.vue'
 import Weather from '../weather/index.vue'
+import dayjs from 'dayjs'
 
+const { now } = useNow({ controls: true })
 const fps = useFps()
 const { isDark, changeBack } = useTheme()
 const themeStore = useThemeStore()
@@ -57,6 +60,8 @@ const changeBacks = (val: string) => {
       <a-space :size="55">
         <span>欢迎来到,<a-typography-text :strong="true">TingFeng</a-typography-text> 的世界!!!</span>
         <Weather />
+
+        <span>{{ dayjs(now).format('YYYY-MM-DD HH:mm:ss') }}</span>
       </a-space>
     </div>
     <a-space :size="20">

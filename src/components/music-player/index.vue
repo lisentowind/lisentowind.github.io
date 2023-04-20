@@ -76,7 +76,7 @@ const changeMusicList = (prev: boolean) => {
   }
 }
 
-const changeMenuMusicList = (value: string | number | Record<string, any> | undefined, ev: Event) => {
+const changeMenuMusicList = (value: string | number | Record<string, any> | undefined) => {
   const index = musicArr.value.findIndex((item) => item.match(/[\u4e00-\u9fa5]+/g)?.join() === value)
   music.value = musicArr.value[index]
 }
