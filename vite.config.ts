@@ -70,7 +70,8 @@ export default defineConfig({
           }
         }
       }
-    }
+    },
   },
-  base: VITE_API_BASE_URL,
+  base: './', // 打包时的基本路径
+
 })
