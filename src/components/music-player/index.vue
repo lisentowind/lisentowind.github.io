@@ -1,6 +1,6 @@
 <script lang='ts' setup>
-import 春三月 from '@/assets/music/春三月-司南.320.mp3'
-import 如果没有你 from '@/assets/music/如果没有你-萧敬腾.128.mp3'
+import CSY from '@/assets/music/春三月-司南.mp3'
+import RGMYN from '@/assets/music/如果没有你-萧敬腾.mp3'
 import logos from '@/assets/images/logos.png'
 import { useToggle } from '@vueuse/core'
 import {
@@ -18,8 +18,19 @@ let time: any = null
 const { isDark } = useTheme()
 const [play, setPlay] = useToggle(false)
 const audio = ref<HTMLAudioElement | null>()
-const musicArr = ref<any[]>([春三月, 如果没有你])
-const music = ref(musicArr.value[0])
+const musicArr = ref<any[]>([
+  {
+    name: '春三月-司南',
+    id: CSY,
+    value: CSY
+  },
+  {
+    name: '如果没有你-萧敬腾',
+    id: RGMYN,
+    value: RGMYN
+  }
+])
+const music = ref(musicArr.value[0].value)
 const playMusic = () => {
   if (audio.value) {
     audio.value.play()
@@ -70,15 +81,15 @@ watch(
 const changeMusicList = (prev: boolean) => {
   const index = musicArr.value.findIndex((item) => item === music.value)
   if (prev) {
-    music.value = musicArr.value[index - 1] || musicArr.value[musicArr.value.length - 1]
+    music.value = musicArr.value[index - 1].value || musicArr.value[musicArr.value.length - 1].value
   } else {
-    music.value = musicArr.value[index + 1] || musicArr.value[0]
+    music.value = musicArr.value[index + 1].value || musicArr.value[0].value
   }
 }
 
 const changeMenuMusicList = (value: string | number | Record<string, any> | undefined) => {
-  const index = musicArr.value.findIndex((item) => item.match(/[\u4e00-\u9fa5]+/g)?.join() === value)
-  music.value = musicArr.value[index]
+  const index = musicArr.value.findIndex((item) => item.value.match(/[\u4e00-\u9fa5]+/g)?.join() === value)
+  music.value = musicArr.value[index].value
 }
 </script>
 
@@ -104,11 +115,11 @@ const changeMenuMusicList = (value: string | number | Record<string, any> | unde
           <a-dropdown trigger="hover" position="tr" @select="changeMenuMusicList">
             <icon-menu-unfold />
             <template #content>
-              <a-doption v-for="item in musicArr" :key="item" :value="item.match(/[\u4e00-\u9fa5]+/g)?.join()"
+              <a-doption v-for="item in musicArr" :key="item" :value="item.value.match(/[\u4e00-\u9fa5]+/g)?.join()"
                 ><template #icon>
                   <icon-music />
                 </template>
-                {{ item.match(/[\u4e00-\u9fa5]+/g)?.join() }}</a-doption
+                {{ item.value.match(/[\u4e00-\u9fa5]+/g)?.join() }}</a-doption
               >
             </template>
           </a-dropdown>
