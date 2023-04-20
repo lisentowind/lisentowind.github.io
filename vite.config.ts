@@ -27,21 +27,21 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 9527,
     open: true,
-    proxy: {
-      '/goodmap': 'http://192.168.10.11:8810/showtime',
-      "/weathernow": {
-        target: "https://devapi.qweather.com/v7/weather",
-        secure: true,
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/weathernow/, '')
-      },
-      "/geoapi": {
-        target: "https://geoapi.qweather.com/v2/city/lookup",
-        secure: true,
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/geoapi/, '')
-      }
-    }
+    // proxy: {
+    //   '/goodmap': 'http://192.168.10.11:8810/showtime',
+    //   "/weathernow": {
+    //     target: "https://devapi.qweather.com/v7/weather",
+    //     secure: true,
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/weathernow/, '')
+    //   },
+    //   "/geoapi": {
+    //     target: "https://geoapi.qweather.com/v2/city/lookup",
+    //     secure: true,
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/geoapi/, '')
+    //   }
+    // }
 
   },
   resolve: {

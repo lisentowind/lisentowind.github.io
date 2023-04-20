@@ -1,5 +1,5 @@
 import axios from "axios";
-const { VITE_API_WEATHER_KEY } = import.meta.env;
+const { VITE_API_WEATHER_KEY, VITE_API_WEATHER_LOCATION, VITE_API_WEATHER_URL } = import.meta.env;
 
 
 
@@ -8,14 +8,14 @@ const { VITE_API_WEATHER_KEY } = import.meta.env;
  * @param location 
  * @returns 
  */
-export const getCityLocationInfo = (location: string) => axios.get<CityLocationInfo>("/geoapi", { params: { location, key: VITE_API_WEATHER_KEY } });
+export const getCityLocationInfo = (location: string) => axios.get<CityLocationInfo>(VITE_API_WEATHER_LOCATION, { params: { location, key: VITE_API_WEATHER_KEY } });
 
 /**
  * 获取实时天气
  * @param LocationID 
  * @returns 
  */
-export const getWeatherNow = (LocationID: string) => axios.get<NowWeatherInfo>("/weathernow/now", { params: { location: LocationID, key: VITE_API_WEATHER_KEY } });
+export const getWeatherNow = (LocationID: string) => axios.get<NowWeatherInfo>(`${VITE_API_WEATHER_URL}/now`, { params: { location: LocationID, key: VITE_API_WEATHER_KEY } });
 
 
 
@@ -24,4 +24,4 @@ export const getWeatherNow = (LocationID: string) => axios.get<NowWeatherInfo>("
  * @param LocationID 
  * @returns 
  */
-export const getWeather7D = (LocationID: string) => axios.get<City7DWeatherInfo>("/weathernow/7d", { params: { location: LocationID, key: VITE_API_WEATHER_KEY } });
+export const getWeather7D = (LocationID: string) => axios.get<City7DWeatherInfo>(`${VITE_API_WEATHER_URL}/7d`, { params: { location: LocationID, key: VITE_API_WEATHER_KEY } });
