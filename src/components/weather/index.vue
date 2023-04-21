@@ -3,6 +3,7 @@ import { useRequest } from 'vue-request'
 import { useToggle } from '@vueuse/core'
 import { getCityLocationInfo, getWeatherNow } from '@/apis/weather.js'
 import { useGetLocation } from '@/hooks/useGetLocation.js'
+import dayjs from 'dayjs'
 import useWeatherIcon from '@/hooks/useWeatherIcon.js'
 import { Location20Filled, Location20Regular } from '@vicons/fluent'
 import { Icon } from '@vicons/utils'
@@ -19,6 +20,7 @@ const { getIp, getCity } = useGetLocation()
 const cityName = ref('')
 const simpelCityInfo = ref<CityLocation>()
 const weatherInfo = ref<NowWeatherInfo>()
+const weatherInfoUpdate = ref<string>('')
 
 // 查看天气详情
 const weatherInfoModal = () => {
@@ -31,11 +33,14 @@ const weatherInfoModal = () => {
 
 const { run: locationRun } = useRequest(getCityLocationInfo, {
   manual: true,
+  pollingInterval: 1000 * 60 * 10,
   defaultParams: [cityName.value],
   onSuccess: (res) => {
     if (res.status === 200) {
       simpelCityInfo.value = res.data.location[0]
       weatherRun(simpelCityInfo.value?.id as string)
+      weatherInfoUpdate.value = dayjs().format('YYYY-MM-DD HH:mm:ss')
+      Message.success('天气信息更新成功')
     }
   }
 })
@@ -96,7 +101,7 @@ onMounted(async () => {
     </a-button>
     <preweatherModal
       v-model="previewWeatherVisibel"
-      :title="'天气详情'"
+      :title="`天气详情 - ${simpelCityInfo?.name} - 更新时间：${weatherInfoUpdate}`"
       :city-value="simpelCityInfo"
       :weather-value="weatherInfo"
     />

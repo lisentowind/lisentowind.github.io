@@ -2,9 +2,12 @@
 import Modal from '@/components/modal/index.vue'
 import { useVModel } from '@vueuse/core'
 import { getWeather7D } from '@/apis/weather.js'
+import useWeatherIcon from '@/hooks/useWeatherIcon.js'
 import { useRequest } from 'vue-request'
 import dayjs from 'dayjs'
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
+import useTheme from '@/hooks/useTheme'
+import { Icon } from '@vicons/utils'
 
 interface WeatherProps {
   modelValue: boolean
@@ -15,8 +18,10 @@ interface WeatherProps {
 interface Emits {
   (e: 'update:modelValue', val: any): void
 }
-const emit = defineEmits<Emits>()
 
+const { isDark } = useTheme()
+const { weatherIcon } = useWeatherIcon()
+const emit = defineEmits<Emits>()
 const props = withDefaults(defineProps<WeatherProps>(), {
   modelValue: false,
   title: '天气详情',
@@ -25,6 +30,7 @@ const props = withDefaults(defineProps<WeatherProps>(), {
 })
 const visible = useVModel(props, 'modelValue', emit)
 const werather7D = ref<City7DWeather[]>()
+const iconsList = ref<any[]>()
 
 // 获取7天天气
 const { run: weather7DRun } = useRequest(getWeather7D, {
@@ -64,7 +70,14 @@ watch(
       <a-space class="footer-pre">
         <a-space v-for="item in werather7D" :key="item.wind360Day" direction="vertical" :align="'center'" :size="20">
           <a-typography-text>{{ dayjs(item.fxDate).format('MM-DD') }} </a-typography-text>
-          <a-typography-text>{{ item.textDay }} </a-typography-text>
+          <a-typography-text>
+            <a-space>
+              <Icon size="20">
+                <component :is="weatherIcon(item.iconDay)[0]" v-if="!isDark" />
+                <component :is="weatherIcon(item.iconDay)[1]" v-if="isDark" /> </Icon
+              >{{ item.textDay }}
+            </a-space>
+          </a-typography-text>
           <a-typography-text>{{ `${item.tempMin}° / ${item.tempMax}°` }} </a-typography-text>
         </a-space>
       </a-space>
