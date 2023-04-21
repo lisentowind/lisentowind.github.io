@@ -30,7 +30,6 @@ const props = withDefaults(defineProps<WeatherProps>(), {
 })
 const visible = useVModel(props, 'modelValue', emit)
 const werather7D = ref<City7DWeather[]>()
-const iconsList = ref<any[]>()
 
 // 获取7天天气
 const { run: weather7DRun } = useRequest(getWeather7D, {

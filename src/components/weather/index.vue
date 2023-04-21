@@ -37,10 +37,15 @@ const { run: locationRun } = useRequest(getCityLocationInfo, {
   defaultParams: [cityName.value],
   onSuccess: (res) => {
     if (res.status === 200) {
-      simpelCityInfo.value = res.data.location[0]
-      weatherRun(simpelCityInfo.value?.id as string)
-      weatherInfoUpdate.value = dayjs().format('YYYY-MM-DD HH:mm:ss')
-      Message.success('天气信息更新成功')
+      try {
+        simpelCityInfo.value = res.data.location[0]
+        weatherRun(simpelCityInfo.value?.id as string)
+        weatherInfoUpdate.value = dayjs().format('YYYY-MM-DD HH:mm:ss')
+        Message.success('天气信息更新成功')
+      } catch (err) {
+        Message.error('天气信息更新失败')
+        throw new Error(err as string)
+      }
     }
   }
 })
