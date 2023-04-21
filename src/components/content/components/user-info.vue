@@ -10,7 +10,6 @@ interface DataItem {
 
 const { isDark } = useTheme()
 
-
 const data = ref<DataItem[]>([
   {
     label: '姓名🤵',
@@ -22,11 +21,11 @@ const data = ref<DataItem[]>([
   },
   {
     label: '现住地址🏠',
-    value: '四川省/成都市/成华区'
+    value: '上海/松江'
   },
   {
     label: '故乡🏠',
-    value: '四川/巴中'
+    value: '福建/厦门'
   },
   {
     label: '详细地址🛣️',
@@ -122,8 +121,8 @@ const playData = ref<DataItem[]>([
 }
 
 .in-user-info {
-  -webkit-animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-  animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  -webkit-animation: fade-in-right 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in-right 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .out-user-info {
@@ -163,7 +162,6 @@ const playData = ref<DataItem[]>([
     opacity: 1;
   }
 }
-
 
 /**
  * ----------------------------------------
