@@ -18,14 +18,14 @@ const menuChange = (key: string | number) => {
 <template>
   <!-- 头像 -->
   <div class="user-left-avatar">
-    <a-space :size="10" mb-60px>
+    <a-space :size="10">
       <img src="@/assets/images/logos.png" w60px h60px class="user-left-avatar-img" alt="" />
       <a-space direction="vertical" :class="isDark ? 'user-left-avatar-isDark' : ''">
         <span font-bold>我是小可爱</span>
         <span><a-tag>shisanlailin@outlook.com</a-tag></span>
       </a-space>
     </a-space>
-    <a-tabs :position="'left'" @change="menuChange" :default-active-key="userStore.selectMenu">
+    <a-tabs :position="'left'" @change="menuChange" :default-active-key="userStore.selectMenu" mt-60px>
       <a-tab-pane key="1">
         <template #title> <icon-user /> 个人信息 </template>
       </a-tab-pane>
@@ -37,7 +37,7 @@ const menuChange = (key: string | number) => {
       </a-tab-pane>
     </a-tabs>
 
-    <!-- <MusicPlayer class="MusicPlayer" /> -->
+    <MusicPlayer class="MusicPlayer" />
   </div>
 </template>
 
