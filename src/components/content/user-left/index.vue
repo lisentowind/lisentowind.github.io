@@ -37,7 +37,7 @@ const menuChange = (key: string | number) => {
       </a-tab-pane>
     </a-tabs>
 
-    <MusicPlayer class="MusicPlayer" />
+    <!-- <MusicPlayer class="MusicPlayer" /> -->
   </div>
 </template>
 
